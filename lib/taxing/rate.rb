@@ -9,7 +9,6 @@ class Taxing::Rate
 
   def self.all(t=Time.now)
     STATES.flat_map do |state_name|
-      puts state_name
       state(state_name, t)
     end
   end
@@ -17,7 +16,6 @@ class Taxing::Rate
   def self.state(state_name, t=Time.now)
     raise "invalid state" unless STATES.include?(state_name)
     raw = get("/TAXRATES_ZIP5_#{state_name}#{t.year}#{t.month}.csv").body
-    puts raw
     skipped = false
     rates = []
     CSV.parse(raw).each do |row|
