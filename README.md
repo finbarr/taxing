@@ -20,6 +20,7 @@ This gem scrapes US tax rates for individual states or the whole country.
 
 The rates are returned as hashes with the following keys as symbols:
 
+```
 state
 zip_code
 tax_region_name
@@ -29,6 +30,7 @@ state_rate
 county_rate
 city_rate
 special_rate
+```
 
 Here's an example of one rate:
 
