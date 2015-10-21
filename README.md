@@ -1,3 +1,7 @@
+## Taxing
+
+This gem scrapes US tax rates for individual states or the whole country.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -15,8 +19,6 @@ Or install it yourself as:
     $ gem install taxing
 
 ## Usage
-
-This gem scrapes US tax rates for individual states or the whole country.
 
 The rates are returned as hashes with the following keys as symbols:
 
