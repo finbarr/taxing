@@ -1,9 +1,3 @@
-# Taxing
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/taxing`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +16,53 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem scrapes US tax rates for individual states or the whole country.
+
+The rates are returned as hashes with the following keys as symbols:
+
+state
+zip_code
+tax_region_name
+tax_region_code
+combined_rate
+state_rate
+county_rate
+city_rate
+special_rate
+
+Here's an example of one rate:
+
+```ruby
+{
+  :state=>"CA",
+  :zip_code=>"90001",
+  :tax_region_name=>"LOS ANGELES COUNTY",
+  :tax_region_code=>"AHBG",
+  :combined_rate=>"0.090000",
+  :state_rate=>"0.065000",
+  :county_rate=>"0.010000",
+  :city_rate=>"0",
+  :special_rate=>"0.015000"
+}
+```
+
+To load all of the rates for one state:
+
+```ruby
+Taxing::Rate.state("CA")
+> [{...}, ...]
+```
+
+To load all of the rates for the USA:
+
+```ruby
+Taxing::Rate.all
+> [{...}, ...]
+```
+
+The methods above can optionally take a `Time` instance as the second argument, and the gem will look up tax rates from that time. They may not all be available. If you get an error when trying to load rates, try passing in a `Time` object for 1 month ago, e.g., `Taxing::Rate.state("CA", 1.month.ago)` (assuming Rails).
+
+This gem is not intended to be used as an API. You should scrape the rates periodically and cache them locally.
 
 ## Development
 

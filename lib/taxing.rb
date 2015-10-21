@@ -1,5 +1,5 @@
 require "taxing/version"
+require "taxing/rate"
 
 module Taxing
-  # Your code goes here...
 end
